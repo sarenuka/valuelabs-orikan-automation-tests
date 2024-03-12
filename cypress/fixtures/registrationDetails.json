@@ -1,0 +1,23 @@
+{
+    
+    "ValidEmail": "Renuka@Orikan.com",
+    "ValidPass": "Pass@123",
+    "validConfirmPass": "Pass@123",
+    "EmailPopupMessage":"Email address is available for registration",
+    "FirstName":"Renuka",
+    "LastName":"SA",
+    "Address":"Hyd",
+    "PostCode":"123456",
+    "City":"Hyd",
+    "State":"3: NT",
+    "CName":"Renuka",
+    "CNumber":"123456",
+    "CVV":"123",
+    "ExpiryMon":"6: 6",
+    "ExpiryYear":"24",
+    "EmailPopup":"Email address is available for registration",
+    "InvalidEmail": "renu.com",
+    "InvalidEmailMessage": "Invalid email address",
+    "EmptyPass": ""
+    
+  }
