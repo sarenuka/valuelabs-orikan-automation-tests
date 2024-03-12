@@ -1,3 +1,8 @@
+/**
+ * Represents the Orikan Registration page.
+ * This class contains methods to interact with the registration page elements and perform various actions.
+ * @class OrikanRegistration
+ */
 class OrikanRegistration{
 
     // Defining locators
@@ -23,6 +28,19 @@ class OrikanRegistration{
     cardCVV_css = '#cardCVV';
     cardExpiryMonth_css = '#cardExpiryMonth';
     cardExpiryYear_css = '#cardExpiryYear';
+    emailValidation_css = '.validation > span';
+    passwordValidation_css = ':nth-child(2) > .validation-messages > .validation > span';
+    firstNameValidation_css = ':nth-child(1) > .validation-messages > .validation > span';
+    addressValidation_css = ':nth-child(6) > .validation-messages > .validation > span';
+    postcodeValidation_css = ':nth-child(9) > .validation-messages > .validation > span';
+    cityValidation_css = ':nth-child(10) > .validation-messages > .validation > span';
+    stateCodeValidation_css = ':nth-child(11) > .validation-messages > .validation > span';
+    cardNameValidation_css = ':nth-child(1) > .validation-messages > .validation > span';
+    cardNumberValidation_css = ':nth-child(3) > .validation-messages > .validation > span';
+    cardExpiryValidation_css = '.validation > span';
+
+
+
     
 
 
@@ -100,13 +118,13 @@ class OrikanRegistration{
         cy.fixture('registrationDetails').then((testData) =>{
             cy.get(this.emailAddress_css).type(testData.InvalidEmail);
             cy.get(this.password_css).click();
-            cy.get('.validation > span').invoke('text').then((text) => {
+            cy.get(this.emailValidation_css).invoke('text').then((text) => {
                 cy.log('Invalid Email: ', text);
                 cy.log("Please enter a valid email address with Orikan domain not exceeding 150 characters");
             })
             cy.get(this.emailAddress_css).clear().type(testData.ValidEmail);
             cy.get(this.password_css).click();
-            cy.get(':nth-child(2) > .validation-messages > .validation > span').invoke('text').then((text) =>{
+            cy.get(this.passwordValidation_css).invoke('text').then((text) =>{
                 cy.log('Password cannot be empty: ', text);
                 cy.log("Please enter valid password with minimum 8 characters, including at least one uppercase letter, one lowercase letter, one number and one special character");
             })
@@ -127,7 +145,7 @@ class OrikanRegistration{
     enterInCorrectContactDetails(){
         // The user enters wrong conatct details
         cy.fixture('registrationDetails').then((testData) =>{
-            cy.get(':nth-child(1) > .validation-messages > .validation > span').invoke('text').then((text) =>{
+            cy.get(this.firstNameValidation_css).invoke('text').then((text) =>{
                 cy.log('First name cannot be empty: ', text);
                 cy.log("Please enter valid first name");
             })
@@ -138,22 +156,22 @@ class OrikanRegistration{
             // })
             // The last name field logic is not executed as the error message is not displayed after entering the first name
             cy.get(this.lastName_css).type(testData.LastName);
-            cy.get(':nth-child(6) > .validation-messages > .validation > span').invoke('text').then((text) =>{
+            cy.get(this.addressValidation_css).invoke('text').then((text) =>{
                 cy.log('Address cannot be empty: ', text);
                 cy.log("Please enter valid address");
             })
             cy.get(this.addressLine1_css).type(testData.Address);
-            cy.get(':nth-child(9) > .validation-messages > .validation > span').invoke('text').then((text) =>{
+            cy.get(this.postcodeValidation_css).invoke('text').then((text) =>{
                 cy.log('Postcode cannot be empty: ', text);
                 cy.log("Please enter valid postcode");
             })
             cy.get(this.postcode_css).type(testData.PostCode);
-            cy.get(':nth-child(10) > .validation-messages > .validation > span').invoke('text').then((text) =>{
+            cy.get(this.cityValidation_css).invoke('text').then((text) =>{
                 cy.log('City cannot be empty: ', text);
                 cy.log("Please enter valid city");
             })
             cy.get(this.city_css).type(testData.City);
-            cy.get(':nth-child(11) > .validation-messages > .validation > span').invoke('text').then((text) =>{ 
+            cy.get(this.stateCodeValidation_css).invoke('text').then((text) =>{ 
                 cy.log('State cannot be empty: ', text);
                 cy.log("Please state from the dropdown");
             })
@@ -168,7 +186,7 @@ class OrikanRegistration{
             cy.get(this.cardHolderName_css).click();
             //cy.get(this.cardTypeMastercard_css).check();
             cy.get(this.cardNumber_css).click();
-            cy.get(':nth-child(1) > .validation-messages > .validation > span').invoke('text').then((text) =>{  
+            cy.get(this.cardNameValidation_css).invoke('text').then((text) =>{  
                 cy.log('Card holder name cannot be empty: ', text);
                 cy.log("Please enter valid card holder name");
             })
@@ -176,7 +194,7 @@ class OrikanRegistration{
             cy.get(this.cardTypeMastercard_css).check();
             cy.get(this.cardName_css).click();
             cy.get(this.cardCVV_css).click();
-            cy.get(':nth-child(3) > .validation-messages > .validation > span').invoke('text').then((text) =>{  
+            cy.get(this.cardNumberValidation_css).invoke('text').then((text) =>{  
                 cy.log('Card number cannot be empty: ', text);
                 cy.log("Please enter valid card number");
             })
@@ -188,7 +206,7 @@ class OrikanRegistration{
             cy.get(this.cardCVV_css).type(testData.CVV);
             cy.get(this.cardExpiryMonth_css).select(testData.ExpiryMon);
             cy.get(this.submitButton_css).click();
-            cy.get('.validation > span').invoke('text').then((text) =>{ 
+            cy.get(this.cardExpiryValidation_css).invoke('text').then((text) =>{ 
                 cy.log('Card expiry year cannot be empty: ', text);
                 cy.log("Please enter card expiry year");
             })
